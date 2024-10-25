@@ -28,7 +28,9 @@ export default function RootLayout({
         <Providers>
           <main className="bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText">
             <Navbar />
-            {children}
+            <div className="md:ml-20 xl:ml-60 flex justify-center">
+              {children}
+            </div>
           </main>
         </Providers>
       </body>
