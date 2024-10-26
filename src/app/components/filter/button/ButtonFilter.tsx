@@ -1,10 +1,5 @@
+import { ButtonFilterProps } from "@/app/types/ButtonFilterProps"
 import React from "react"
-
-interface ButtonFilterProps {
-  isActive: boolean
-  onClick: () => void
-  children: React.ReactNode
-}
 
 export default function ButtonFilter({ isActive, onClick, children }: ButtonFilterProps) {
   return (

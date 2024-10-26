@@ -3,64 +3,48 @@
 import { useEffect, useState } from "react"
 import { Category } from '../../types/Category'
 import ButtonFilter from "./button/ButtonFilter"
-import { useImagesContext } from "@/app/context/ImagesContext"
-
-const categories: Category[] = [
-  {
-    "id": 5,
-    "name": "boxes"
-  },
-  {
-    "id": 15,
-    "name": "clothes"
-  },
-  {
-    "id": 1,
-    "name": "hats"
-  },
-  {
-    "id": 14,
-    "name": "sinks"
-  },
-  {
-    "id": 2,
-    "name": "space"
-  },
-  {
-    "id": 4,
-    "name": "sunglasses"
-  },
-  {
-    "id": 7,
-    "name": "ties"
-  }
-]
+import { Filters, useImagesContext } from "@/app/context/ImagesContext"
+import ToggleButtonFilter from "./button/ToggleButtonFilter"
+import AssignmentIcon from '@mui/icons-material/Assignment';
 
 export default function Filter() {
 
-  const [selectedCategories, setSelectedCategories] = useState<Category[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null)
+  const [hasBreed, setHasBreed] = useState<1 | 0>(0)
 
-  const { setFilter } = useImagesContext()
+  const { setFilter, categories } = useImagesContext()
 
-  function handleFilterChange(category: Category) {
-    setSelectedCategories(previous => {
-      const updatedCategories = previous.some(selected => selected.id === category.id)
-        ? previous.filter(selected => selected.id !== category.id)
-        : [...previous, category]
+  function handleFilterChange(category: Category): void {
+    if(selectedCategory?.id === category.id) {
+      setSelectedCategory(null)
+      return
+    }
+    setSelectedCategory(category)
+  }
 
-      return updatedCategories
-    })
+  function toggleHasBreed(): void {
+    if(hasBreed === 1) {
+      setHasBreed(0)
+    } else {
+      setHasBreed(1)
+    }
   }
 
   useEffect(() => {
-    setFilter(selectedCategories.map(category => category.id).join(','))
-  }, [selectedCategories, setFilter])
-
+    setFilter((prevFilter: Filters) => {
+      return ({
+        ...prevFilter,
+        category_ids: selectedCategory?.id,
+        has_breeds: hasBreed
+      })
+    })
+  }, [selectedCategory, setFilter, hasBreed ])
+  
   return (
-    <div className="mb-10">
-      <div className="flex flex-wrap gap-4">
+    <div className="mb-10 ">
+      <div className="flex flex-wrap gap-4 mb-10 justify-center">
         {categories.map(category => {
-          const isSelected = selectedCategories.some(selected => selected.id === category.id)
+          const isSelected = selectedCategory?.id === category.id
           return (
             <div key={category.id}>
               <ButtonFilter onClick={() => handleFilterChange(category)} isActive={isSelected}>
@@ -69,6 +53,13 @@ export default function Filter() {
             </div>
           )
         })}
+      </div>
+
+      <div className="border-t-[1px] pt-1 border-darkBackground dark:border-lightBackground xl:w-[1220px] flex flex-wrap justify-center">
+        <ToggleButtonFilter onClick={() => toggleHasBreed()} isActive={hasBreed === 1}>
+          <AssignmentIcon fontSize="inherit" />
+          Breed
+        </ToggleButtonFilter>
       </div>
     </div>
   )
