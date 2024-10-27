@@ -5,8 +5,16 @@ export async function generateStaticParams() {
   return [{ id: '1' }]
 }  
 
-export default function CatPage() {
+
+interface CatPageProps {
+  params: {
+    id: string
+  }
+}
+
+export default async function CatPage({ params }: CatPageProps) {
   console.log("entrou catPage")
+  if(params.id === '1') return
   return <CatDetails />
  
 }
