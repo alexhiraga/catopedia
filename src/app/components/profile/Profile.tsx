@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import favicon from '../../favicon.ico'
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -5,8 +7,12 @@ import LinkedIn from "@mui/icons-material/LinkedIn";
 import Instagram from "@mui/icons-material/Instagram";
 import { Tooltip } from "@mui/material";
 import Article from "@mui/icons-material/Article";
+import { useUserModal } from "@/app/context/modal/UserModalContext";
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function Profile() {
+  const { openModal, user } = useUserModal()
+
   return (
     <div className="flex gap-10 md:gap-20 mb-14">
       <div className="relative bg-gray-800 rounded-full w-40 h-40 flex flex-col justify-center">
@@ -17,14 +23,24 @@ export default function Profile() {
           width={120}
           height={120}
           layout="intrinsic"
-          objectFit="cover"
         />
       </div>
 
       <div className="flex flex-col justify-around">
-        <h2 className="text-lg">
+        <h4 className="text-xs -mb-7">
           <span className="font-bold">Catopedia</span> by Alex Hiraga
-        </h2>
+        </h4>
+        <div className="flex gap-3 items-center">
+          {user ? (
+            <h2 className="text-lg font-semibold">{user}</h2>
+          ) : (
+            <h2 className="italic text-lg">Your cat name</h2>
+          )}
+          <button onClick={openModal} className="text-sm underline dark:hover:text-cyan-700 hover:text-cyan-300 transition-all flex gap-1 items-center">
+            <EditIcon fontSize="inherit" />
+            Edit
+          </button>
+        </div>
         <div className="flex flex-row gap-4">
           <Tooltip title="GitHub">
             <a href="https://github.com/alexhiraga" target="_blank">

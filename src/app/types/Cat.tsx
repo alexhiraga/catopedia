@@ -6,4 +6,6 @@ export interface Cat {
   width: number
   height: number
   breeds?: Breed[]
+
+  favourite_id?: number
 }

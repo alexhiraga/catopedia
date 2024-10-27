@@ -1,20 +1,26 @@
 "use client"
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from '../../api/axiosConfig'
+import { Favourite } from "../types/Favourite";
+import { useUserModal } from "./modal/UserModalContext";
+import { useNotification } from "./NotificationContext";
+import { NotificationTypesEnum } from "../enums/NotificationTypesEnum";
+import { FavouriteDTO } from "../types/FavouriteDTO";
+import { usePathname } from "next/navigation";
 
 interface FavouriteContextType {
-  user: string
-  setUser: (subId: string) => void
-  favourites: any[] // tipar
-  setFavourites: (imageId: string) => void
+  favourites: Favourite[]
+  addFavourite: (favouriteDTO: FavouriteDTO) => Promise<void>
+  removeFavourite: (id: number) => Promise<boolean>
+  loading: boolean
 }
 
 const defaultFavouriteContextValue: FavouriteContextType = {
-  user: '',
-  setUser: () => {},
   favourites: [],
-  setFavourites: () => {},
+  addFavourite: async() => {},
+  removeFavourite: async() => false,
+  loading: false,
 }
 
 interface FavouriteProviderProps {
@@ -28,24 +34,71 @@ export const useFavouriteContext = () => {
 }
 
 export default function FavouriteProvider({ children }: FavouriteProviderProps) {
-  const [user, setUser] = useState<string>('')
-  const [favourite, setFavourites] = useState<any[]>([])
+  const [favourites, setFavourites] = useState<Favourite[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
+  const { user } = useUserModal()
+  const { showNotification } = useNotification()
+  const pathname = usePathname()
 
-  const fetchFavourites = async() => {
+  const fetchFavourites = async(): Promise<void> => {
     try {
-      if(!user) setNewUser()
-      const favouritesResponse = (await axios.get('/favourites'))
+      setLoading(true)
+      const favouritesResponse = (await axios.get('/favourites')).data
+      setFavourites(favouritesResponse)
     } catch (error) {
+      showNotification(NotificationTypesEnum.DANGER, 'Error on searching favourites')
       console.error('Error on searching favourites:', error)
+    } finally {
+      setLoading(false)
     }
   }
 
-  const setNewUser = () => {
-    setUser('') //remover, fica salvo na api-key
+  const addFavourite = async (favourite: FavouriteDTO): Promise<void> => {
+    if(!user) return showNotification(NotificationTypesEnum.DANGER, 'It is necessary to set your cat name to favourite an image.')
+    try {
+      const body = {
+        image_id: favourite.image_id,
+        sub_id: user,
+      }
+      const response = (await axios.post('/favourites', body)).data
+      if(response.message === 'SUCCESS') {
+        showNotification(NotificationTypesEnum.SUCCESS, 'Image successfully favorited!')
+      }
+    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      const errorMessage = error?.response?.data
+      if(errorMessage && errorMessage.startsWith('DUPLICATE_FAVOURITE')) {
+        showNotification(NotificationTypesEnum.WARNING, 'Image is already favorited!')
+        console.error('Image is already favorited!', error)
+      } else {
+        showNotification(NotificationTypesEnum.DANGER, 'Error on saving new favourite image')
+        console.error('Error on saving new favourite image:', error)
+      }
+    }
   }
 
+  const removeFavourite = async (id: number): Promise<boolean> => {
+    try {
+      const response = (await axios.delete(`/favourites/${id}`)).data
+      if(response?.message && response.message === 'SUCCESS') {
+        showNotification(NotificationTypesEnum.SUCCESS, 'Image deleted successfully!')
+        return true
+      }
+      else return false
+    } catch (error) {
+      showNotification(NotificationTypesEnum.DANGER, 'Error on deleting image')
+      console.error('Error on deleting image:', error)
+      return false
+    }
+  }
+
+  useEffect(() => {
+    if(pathname === '/favourites') fetchFavourites()
+  }, [pathname])
+
   return (
-    <FavouriteContext.Provider value={{ user, setUser, favourites, setFavourites }}>
+    <FavouriteContext.Provider value={{ favourites, addFavourite, removeFavourite, loading }}>
       {children}
     </FavouriteContext.Provider>
   )

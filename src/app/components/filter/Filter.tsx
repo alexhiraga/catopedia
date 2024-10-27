@@ -6,6 +6,8 @@ import ButtonFilter from "./button/ButtonFilter"
 import { Filters, useImagesContext } from "@/app/context/ImagesContext"
 import ToggleButtonFilter from "./button/ToggleButtonFilter"
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import Link from "next/link"
 
 export default function Filter() {
 
@@ -60,6 +62,12 @@ export default function Filter() {
           <AssignmentIcon fontSize="inherit" />
           Breed
         </ToggleButtonFilter>
+        <Link href="/favourites">
+          <ToggleButtonFilter>
+            <FavoriteIcon fontSize="inherit" />
+            Favourites
+          </ToggleButtonFilter>
+        </Link>
       </div>
     </div>
   )

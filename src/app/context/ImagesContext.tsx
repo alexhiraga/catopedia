@@ -12,6 +12,9 @@ interface ImagesContextType {
   setFilter: (filters: Filters) => void
   categories: Category[],
   setCategories: (categories: Category[]) => void
+  hasMore: boolean
+  loading: boolean
+  fetchImages: () => void
 }
 
 const defaultContextValue: ImagesContextType = {
@@ -29,6 +32,9 @@ const defaultContextValue: ImagesContextType = {
   setFilter: () => {},
   categories: [],
   setCategories: () => {},
+  hasMore: true,
+  loading: false,
+  fetchImages: () => {},
 }
 
 interface ImageProviderProps {
@@ -55,8 +61,13 @@ export default function ImageProvider({ children }: ImageProviderProps) {
   const [images, setImages] = useState<Cat[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [filter, setFilter] = useState<Filters>(defaultContextValue.filter)
+  const [hasMore, setHasMore] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [page, setPage] = useState<number>(0)
 
   const fetchImages = async () => {
+    if(loading || !hasMore) return
+    setLoading(true)
     try {
       const params = Object.entries(filter || {}).reduce((acc: { [key: string]: unknown }, [key, value]) => {
         if (value != null) {
@@ -68,11 +79,19 @@ export default function ImageProvider({ children }: ImageProviderProps) {
       if (Object.keys(params).length === 0) {
         return;
       }
+      params.page = page
 
       const response = (await axios.get('/images/search', { params })).data
-      setImages(response)
+      if(response.length === 0) {
+        setHasMore(false)
+        setPage((prevPage) => prevPage + 1)
+      } else {
+        setImages(prevImages => [...prevImages, ...response])
+      }
     } catch (error) {
       console.error('Error on searching images:', error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -100,7 +119,7 @@ export default function ImageProvider({ children }: ImageProviderProps) {
   }, [])
 
   return (
-    <ImagesContext.Provider value={{ images, setImages, filter, setFilter, categories, setCategories }}>
+    <ImagesContext.Provider value={{ images, setImages, filter, setFilter, categories, setCategories, hasMore, loading, fetchImages }}>
       {children}
     </ImagesContext.Provider>
   )

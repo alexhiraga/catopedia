@@ -3,6 +3,7 @@ import "./globals.css";
 import { Montserrat } from 'next/font/google'
 import { Providers } from "./providers";
 import Navbar from "./navbar";
+import AppProviders from "./context/AppProviders";
 
 const montserrat = Montserrat({
   weight: ['400', '600', '800'],
@@ -26,12 +27,14 @@ export default function RootLayout({
         className={`${montserrat.className} antialiased`}
       >
         <Providers>
-          <main className="bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText">
-            <Navbar />
-            <div className="md:ml-20 xl:ml-60 flex justify-center">
-              {children}
-            </div>
-          </main>
+          <AppProviders>
+            <main className="bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText">
+              <Navbar />
+              <div className="md:ml-20 xl:ml-60 flex justify-center">
+                {children}
+              </div>
+            </main>
+          </AppProviders>
         </Providers>
       </body>
     </html>

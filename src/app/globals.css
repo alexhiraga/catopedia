@@ -7,7 +7,7 @@
   --foreground: #111111;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background: #111111;
     --foreground: #ededed;
@@ -19,3 +19,45 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.btn-confirm {
+  background-image: linear-gradient(to right, #AAFFA9 0%, #11FFBD  51%, #AAFFA9  100%);
+  margin: 10px;
+  padding: 7px 20px;
+  text-align: center;
+  font-size: 14px;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: #111111;
+  font-weight: 600;
+  box-shadow: 0 0 6px #4aff68;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-confirm:hover {
+  background-position: right center;
+  text-decoration: none;
+}
+
+         
+.btn-cancel {
+  background-image: linear-gradient(to right, #e52d27 0%, #b31217  51%, #e52d27  100%);
+  margin: 10px;
+  padding: 7px 20px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: #111111;
+  font-weight: 600;
+  box-shadow: 0 0 4px #ff6868;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-cancel:hover {
+  background-position: right center;
+  text-decoration: none;
+}
+
+
