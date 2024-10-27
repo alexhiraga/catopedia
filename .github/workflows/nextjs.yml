@@ -74,10 +74,12 @@ jobs:
       - name: Install dependencies
         env:
           NEXT_PUBLIC_CAT_X_API_KEY: ${{ secrets.NEXT_PUBLIC_CAT_X_API_KEY }}
+          NEXT_PUBLIC_OUTPUT: ${{ secrets.NEXT_PUBLIC_OUTPUT }}
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --legacy-peer-deps
       - name: Build with Next.js
         env:
           NEXT_PUBLIC_CAT_X_API_KEY: ${{ secrets.NEXT_PUBLIC_CAT_X_API_KEY }}
+          NEXT_PUBLIC_OUTPUT: ${{ secrets.NEXT_PUBLIC_OUTPUT }}
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
