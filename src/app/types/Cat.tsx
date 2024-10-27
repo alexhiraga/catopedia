@@ -8,4 +8,5 @@ export interface Cat {
   breeds?: Breed[]
 
   favourite_id?: number
+  sub_id?: string
 }

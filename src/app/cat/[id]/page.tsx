@@ -10,6 +10,11 @@ import { useParams } from "next/navigation";
 import ActionsBar from "./ActionsBar";
 import Loading from "@/app/components/loading/Loading";
 import NotFound from "@/app/components/notfound/NotFound";
+import CatStats from "./CatStats";
+import LinkIcon from '@mui/icons-material/Link';
+import Link from "next/link";
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import PetsIcon from '@mui/icons-material/Pets';
 
 export default function CatPage() {
   const [cat, setCat] = useState<Cat>()
@@ -44,11 +49,11 @@ export default function CatPage() {
     return <Loading />
   }
 
-  if(!cat) {
+  if(!cat && !loading) {
     return <NotFound />
   }
 
-  return (
+  if(cat) return (
     <div className=" md:w-auto min-h-screen pt-0 md:pt-20">
       <div className="border-darkBackground dark:border-lightBackground border-[1px] flex flex-col md:flex-row">
         <div className="w-screen md:w-auto md:max-w-xl">
@@ -124,6 +129,35 @@ export default function CatPage() {
           </div>
         </div>
       </div>
+
+      <div className="my-20">
+        {cat.breeds && cat.breeds.length && cat.breeds.map(breed =>  (
+          <div key={breed.id}>
+            <CatStats breed={breed} />
+            <div className="flex flex-row gap-4 justify-center mt-10">
+              <div className="text-xs hover:brightness-200 transition-all">
+                <Link href={breed.wikipedia_url} className="flex flex-row gap-1 items-center">
+                  <LinkIcon />
+                  Wikipedia
+                </Link>
+              </div>
+              <div className="text-xs hover:brightness-200 transition-all">
+                <Link href={breed.vcahospitals_url} className="flex flex-row gap-1 items-center">
+                  <LocalHospitalIcon />
+                  VCA Hospital
+                </Link>
+              </div>
+              <div className="text-xs hover:brightness-200 transition-all">
+                <Link href={breed.vetstreet_url} className="flex flex-row gap-1 items-center">
+                  <PetsIcon />
+                  Vet Street
+                </Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 }

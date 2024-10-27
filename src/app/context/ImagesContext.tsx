@@ -65,7 +65,7 @@ export default function ImageProvider({ children }: ImageProviderProps) {
   const [loading, setLoading] = useState<boolean>(false)
   const [page, setPage] = useState<number>(0)
 
-  const fetchImages = async () => {
+  const fetchImages = async (reset: boolean = false) => {
     if(loading || !hasMore) return
     setLoading(true)
     try {
@@ -77,7 +77,7 @@ export default function ImageProvider({ children }: ImageProviderProps) {
       }, {})
 
       if (Object.keys(params).length === 0) {
-        return;
+        return
       }
       params.page = page
 
@@ -86,7 +86,7 @@ export default function ImageProvider({ children }: ImageProviderProps) {
         setHasMore(false)
         setPage((prevPage) => prevPage + 1)
       } else {
-        setImages(prevImages => [...prevImages, ...response])
+        setImages(prevImages => reset ? response : [...prevImages, ...response])
       }
     } catch (error) {
       console.error('Error on searching images:', error)
@@ -111,7 +111,7 @@ export default function ImageProvider({ children }: ImageProviderProps) {
   }
 
   useEffect(() => {
-    if(filter) fetchImages()
+    if(filter) fetchImages(true)
   }, [filter])
 
   useEffect(() => {

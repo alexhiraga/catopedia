@@ -39,6 +39,7 @@ export default function FavouriteProvider({ children }: FavouriteProviderProps) 
   const { user } = useUserModal()
   const { showNotification } = useNotification()
   const pathname = usePathname()
+  const { openModal } = useUserModal()
 
   const fetchFavourites = async(): Promise<void> => {
     try {
@@ -54,7 +55,11 @@ export default function FavouriteProvider({ children }: FavouriteProviderProps) 
   }
 
   const addFavourite = async (favourite: FavouriteDTO): Promise<void> => {
-    if(!user) return showNotification(NotificationTypesEnum.DANGER, 'It is necessary to set your cat name to favourite an image.')
+    if(!user) {
+      openModal()
+      return showNotification(NotificationTypesEnum.DANGER, 'It is necessary to set your cat name to favourite an image.')
+    }
+
     try {
       const body = {
         image_id: favourite.image_id,

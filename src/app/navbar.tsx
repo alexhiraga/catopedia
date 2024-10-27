@@ -4,6 +4,7 @@ import favicon from './favicon.ico'
 import NavbarIcon from "./components/navbar/NavbarIcon";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HomeIcon from '@mui/icons-material/Home';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 
 export default function Navbar() {
   return (
@@ -30,6 +31,10 @@ export default function Navbar() {
           <NavbarIcon href="/favourites">
             <FavoriteIcon fontSize="large" />
             <div className="hidden xl:block">Favourites</div>
+          </NavbarIcon>
+          <NavbarIcon href="https://documenter.getpostman.com/view/5578104/RWgqUxxh">
+            <TextSnippetIcon fontSize="large" />
+            <div className="hidden xl:block">The Cat API</div>
           </NavbarIcon>
         </div>
       </div>
