@@ -75,6 +75,8 @@ jobs:
         env:
           NEXT_PUBLIC_CAT_X_API_KEY: ${{ secrets.NEXT_PUBLIC_CAT_X_API_KEY }}
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --legacy-peer-deps
+      - name: Print api
+        run: echo API K is ${{ secrets.NEXT_PUBLIC_CAT_X_API_KEY }}
       - name: Build with Next.js
         env:
           NEXT_PUBLIC_CAT_X_API_KEY: ${{ secrets.NEXT_PUBLIC_CAT_X_API_KEY }}
