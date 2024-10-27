@@ -35,7 +35,6 @@ This project is built with Next.js and integrates with [TheCatAPI](https://theca
    ```bash
    git clone https://github.com/your-username/catopedia.git
    cd catopedia
-  ```
 
 2. Install dependencies:
 
