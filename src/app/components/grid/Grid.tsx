@@ -55,7 +55,7 @@ export default function Grid({ images, isFavourite }: GridProps) {
               <div className="absolute inset-0 flex items-center gap-2 justify-center opacity-0 group hover:opacity-100 transition-opacity ease-in-out duration-400">
                 <Link href={`/cat/${image.id}`}>
                   <Tooltip title="Open image">
-                    <OpenInNewIcon />
+                    <OpenInNewIcon className="text-darkText" />
                   </Tooltip>
                 </Link>
                 { isFavourite ? (
@@ -65,7 +65,7 @@ export default function Grid({ images, isFavourite }: GridProps) {
                   >
                     {hover ? (
                       <Tooltip title='Unfavorite image'>
-                        <FavoriteBorderIcon className=" cursor-pointer" onClick={handleToggleFavourite} />
+                        <FavoriteBorderIcon className=" cursor-pointer text-darkText" onClick={handleToggleFavourite} />
                       </Tooltip>
                     ) : (
                       <FavoriteIcon className="text-red-500" />
@@ -81,7 +81,7 @@ export default function Grid({ images, isFavourite }: GridProps) {
                         <FavoriteIcon className="text-red-500 cursor-pointer" onClick={handleToggleFavourite} />
                       </Tooltip>
                     ) : (
-                      <FavoriteBorderIcon />
+                      <FavoriteBorderIcon className="text-darkText" />
                     )}
                   </div>
                 )}
