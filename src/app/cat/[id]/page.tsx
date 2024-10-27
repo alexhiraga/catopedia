@@ -5,16 +5,13 @@ export async function generateStaticParams() {
   return [{ id: '1' }]
 }  
 
+type CatPageProps = Promise<{
+  id: string
+}>
 
-interface CatPageProps {
-  params: {
-    id: string
-  }
-}
-
-export default async function CatPage({ params }: CatPageProps) {
+export default async function CatPage(props : { params: CatPageProps }) {
   console.log("entrou catPage")
-  if(params.id === '1') return
+  if((await props.params).id === '1') return
   return <CatDetails />
  
 }
