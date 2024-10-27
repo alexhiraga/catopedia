@@ -1,3 +1,5 @@
+"use client"
+
 import { useFavouriteContext } from "@/app/context/FavouriteContext"
 import { useNotification } from "@/app/context/NotificationContext"
 import { NotificationTypesEnum } from "@/app/enums/NotificationTypesEnum"
