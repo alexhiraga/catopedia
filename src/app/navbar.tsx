@@ -15,7 +15,7 @@ export default function Navbar() {
       <div className="flex flex-row justify-between md:flex-col md:justify-start w-1/2 md:w-auto">
         <div className="md:mb-20 flex gap-2 items-center">
           <Image 
-            className="w-10 md:w-full"
+            className="w-10 md:w-[revert-layer]"
             src={favicon}
             alt="Logo"
             width={60}
