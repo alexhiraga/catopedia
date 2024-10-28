@@ -1,9 +1,5 @@
 import CatDetails from "./CatDetails";
 
-export async function generateStaticParams() {
-  return [{ id: '1' }]
-}  
-
-export default async function CatPage() {
-  return <CatDetails />
+export default function CatPage({ params }: {params: { id: string } }) {
+  return <CatDetails id={params.id} />
 }

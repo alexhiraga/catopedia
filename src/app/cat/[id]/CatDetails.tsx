@@ -14,11 +14,13 @@ import LinkIcon from '@mui/icons-material/Link';
 import Link from "next/link";
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import PetsIcon from '@mui/icons-material/Pets';
-import { useParams } from "next/navigation";
 
-export default function CatDetails() {
+interface CatDetailsProps {
+  id: string 
+}
+
+export default function CatDetails({ id }: CatDetailsProps) {
   const [cat, setCat] = useState<Cat>()
-  const params = useParams()
   const [loading, setLoading] = useState<boolean>(false)
 
   async function fetchCat(id: string): Promise<void> {
@@ -35,11 +37,10 @@ export default function CatDetails() {
   }
 
   useEffect(() => {
-    const id = Array.isArray(params.id) ? params.id[0] : params.id
     if(id) {
       fetchCat(id)
     }
-  }, [params])
+  }, [id])
 
   function handleConcatenateBreed(key: string, defaultValue?: string): string {
     return cat?.breeds?.length ? cat?.breeds.map(breed => breed[key]).join(' - ') : (defaultValue || '')
