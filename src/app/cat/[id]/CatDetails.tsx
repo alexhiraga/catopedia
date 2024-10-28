@@ -1,7 +1,7 @@
 "use client"
 
 import { Cat } from "@/app/types/Cat";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from '../../../api/axiosConfig'
 import Image from "next/image";
 import favicon from '../../favicon.ico'
