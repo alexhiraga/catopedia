@@ -45,7 +45,11 @@ export default function FavouriteProvider({ children }: FavouriteProviderProps) 
     try {
       setLoading(true)
       const favouritesResponse = (await axios.get('/favourites')).data
-      setFavourites(favouritesResponse)
+      if(favouritesResponse) {
+        setFavourites(favouritesResponse)
+      } else {
+        showNotification(NotificationTypesEnum.WARNING, 'No favourite found')
+      }
     } catch (error) {
       showNotification(NotificationTypesEnum.DANGER, 'Error on searching favourites')
       console.error('Error on searching favourites:', error)

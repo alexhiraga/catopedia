@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: '/catopedia',
+  basePath: process.env.NEXT_PUBLIC_IS_PRODUCTION === 'true' ? '/catopedia' : '',
   images: {
     remotePatterns: [
       {
