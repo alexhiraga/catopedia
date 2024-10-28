@@ -1,7 +1,7 @@
 "use client"
 
 import { Cat } from "@/app/types/Cat";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import axios from '../../../api/axiosConfig'
 import Image from "next/image";
 import favicon from '../../favicon.ico'
@@ -15,9 +15,7 @@ import Link from "next/link";
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import PetsIcon from '@mui/icons-material/Pets';
 
-interface CatDetailsProps {
-  id: string 
-}
+type CatDetailsProps = { id: string };
 
 export default function CatDetails({ id }: CatDetailsProps) {
   const [cat, setCat] = useState<Cat>()

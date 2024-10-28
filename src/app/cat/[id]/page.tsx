@@ -1,5 +1,6 @@
 import CatDetails from "./CatDetails";
 
-export default function CatPage({ params }: {params: { id: string } }) {
-  return <CatDetails id={params.id} />
+export default async function CatPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+  return <CatDetails id={resolvedParams.id} />;
 }
