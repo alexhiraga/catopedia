@@ -17,7 +17,7 @@ This project is built with Next.js and integrates with [TheCatAPI](https://theca
 ## Features
 
 - **Cat Catalog**: Browse through different cat images by categories.
-- **Favorites**: Save your favorite cats for easy access.
+- **Favorites**: Save your favorite cats for easy access. (It is necessary to set an user name)
 - **Dark Mode**: Toggle between light and dark themes.
 - **Dynamic Routes**: Routes like `/cat/[id]` to view details for a specific cat.
 
@@ -26,7 +26,6 @@ This project is built with Next.js and integrates with [TheCatAPI](https://theca
 ### Prerequisites
 
 - Node.js v16+ and npm.
-- GitHub account to configure GitHub Pages (for deployment).
 
 ### Steps
 
