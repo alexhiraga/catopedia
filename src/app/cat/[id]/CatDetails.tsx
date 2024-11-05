@@ -2,9 +2,9 @@
 
 import { Cat } from "@/types/Cat";
 import { useEffect, useState } from "react";
-import axios from '../../api/axiosConfig'
+import axios from '../../../api/axiosConfig'
 import Image from "next/image";
-import favicon from '../../app/favicon.ico'
+import favicon from '../../favicon.ico'
 import LineInfo from "@/components/cat/LineInfo";
 import ActionsBar from "./ActionsBar";
 import Loading from "@/components/loading/Loading";
