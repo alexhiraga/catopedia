@@ -1,6 +1,6 @@
 "use client"
 
-import axios from '../../api/axiosConfig'
+import axios from '../api/axiosConfig'
 import { createContext, useContext, useEffect, useState } from "react";
 import { Cat } from '../types/Cat';
 import { Category } from '../types/Category';

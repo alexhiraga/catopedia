@@ -67,7 +67,7 @@ export default function UserModalProvider({ children }: UserModalProviderProps) 
                   p-10 rounded-xl"
         overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
       >
-        <div className="text-center flex flex-col gap-4">
+        <form className="text-center flex flex-col gap-4">
           <h2 className="font-bold text-lg">
             Choose your cat name
           </h2>
@@ -92,18 +92,12 @@ export default function UserModalProvider({ children }: UserModalProviderProps) 
               Cancel
             </button>
           </div>
-        </div>
+        </form>
       </ReactModal>
     </UserModalContext.Provider>
   )
 }
 
 export const useUserModal = () => {
-  // console.log('test')
-  // const context = useContext(UserModalContext)
-  // if (!context) {
-  //    throw new Error("Modal should be used inside provider")
-  // }
-  // return context
   return useContext(UserModalContext)
 }

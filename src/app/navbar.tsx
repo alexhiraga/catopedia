@@ -1,7 +1,7 @@
 import Image from "next/image";
-import DarkModeSwitch from "./components/DarkModeSwitch";
+import DarkModeSwitch from "../components/DarkModeSwitch";
 import favicon from './favicon.ico'
-import NavbarIcon from "./components/navbar/NavbarIcon";
+import NavbarIcon from "../components/navbar/NavbarIcon";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HomeIcon from '@mui/icons-material/Home';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
@@ -23,7 +23,7 @@ export default function Navbar() {
           />
           <h2 className="text-lg font-semibold invisible  xl:visible">Catopedia</h2>
         </div>
-        <div className="flex flex-row md:flex-col gap-4">
+        <nav className="flex flex-row md:flex-col gap-4">
           <NavbarIcon href="/">
             <HomeIcon fontSize="large" />
             <div className="hidden xl:block">Home</div>
@@ -36,11 +36,11 @@ export default function Navbar() {
             <TextSnippetIcon fontSize="large" />
             <div className="hidden xl:block">The Cat API</div>
           </NavbarIcon>
-        </div>
+        </nav>
       </div>
-      <div>
+      <aside>
         <DarkModeSwitch />
-      </div>
+      </aside>
     </div>
   )
 }

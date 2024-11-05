@@ -1,5 +1,5 @@
-import { NotificationTypesEnum } from "@/app/enums/NotificationTypesEnum";
-import { NotificationProps } from "@/app/types/NotificationProps";
+import { NotificationTypesEnum } from "@/enums/NotificationTypesEnum";
+import { NotificationProps } from "@/types/NotificationProps";
 import { useEffect, useState } from "react";
 
 export default function Notification({ type, message }: NotificationProps) {

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import favicon from '../../favicon.ico'
+import favicon from '../../app/favicon.ico'
 
 export default function Loading() {
   return (

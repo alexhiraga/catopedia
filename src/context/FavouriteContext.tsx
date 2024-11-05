@@ -1,7 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import axios from '../../api/axiosConfig'
+import axios from '../api/axiosConfig'
 import { Favourite } from "../types/Favourite";
 import { useUserModal } from "./modal/UserModalContext";
 import { useNotification } from "./NotificationContext";

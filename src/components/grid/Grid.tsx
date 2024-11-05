@@ -7,8 +7,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Tooltip } from "@mui/material";
-import { useFavouriteContext } from "@/app/context/FavouriteContext";
-import { Cat } from "@/app/types/Cat";
+import { useFavouriteContext } from "@/context/FavouriteContext";
+import { Cat } from "@/types/Cat";
 
 interface GridProps {
   images: Cat[]
@@ -53,7 +53,7 @@ export default function Grid({ images, isFavourite }: GridProps) {
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
               <div className="absolute inset-0 flex items-center gap-2 justify-center opacity-0 group hover:opacity-100 transition-opacity ease-in-out duration-400">
-                <Link href={`/cat/${image.id}`}>
+                <Link href={`/cat?id=${image.id}`}>
                   <Tooltip title="Open image">
                     <OpenInNewIcon className="text-darkText" />
                   </Tooltip>

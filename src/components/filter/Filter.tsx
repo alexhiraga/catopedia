@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Category } from '../../types/Category'
 import ButtonFilter from "./button/ButtonFilter"
-import { Filters, useImagesContext } from "@/app/context/ImagesContext"
+import { Filters, useImagesContext } from "@/context/ImagesContext"
 import ToggleButtonFilter from "./button/ToggleButtonFilter"
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import FavoriteIcon from '@mui/icons-material/Favorite';

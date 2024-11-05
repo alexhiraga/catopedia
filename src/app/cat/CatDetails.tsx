@@ -1,14 +1,14 @@
 "use client"
 
-import { Cat } from "@/app/types/Cat";
+import { Cat } from "@/types/Cat";
 import { useEffect, useState } from "react";
-import axios from '../../../api/axiosConfig'
+import axios from '../../api/axiosConfig'
 import Image from "next/image";
-import favicon from '../../favicon.ico'
-import LineInfo from "@/app/components/cat/LineInfo";
+import favicon from '../../app/favicon.ico'
+import LineInfo from "@/components/cat/LineInfo";
 import ActionsBar from "./ActionsBar";
-import Loading from "@/app/components/loading/Loading";
-import NotFound from "@/app/components/notfound/NotFound";
+import Loading from "@/components/loading/Loading";
+import NotFound from "@/components/notfound/NotFound";
 import CatStats from "./CatStats";
 import LinkIcon from '@mui/icons-material/Link';
 import Link from "next/link";

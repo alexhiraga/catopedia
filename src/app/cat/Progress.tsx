@@ -35,5 +35,3 @@ export default function Progress({ value, variant, label }: ProgressProps) {
     </div>
   )
 }
-
-// export default Progress

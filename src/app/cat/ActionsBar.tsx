@@ -1,14 +1,14 @@
 "use client"
 
-import { useFavouriteContext } from "@/app/context/FavouriteContext"
-import { useNotification } from "@/app/context/NotificationContext"
-import { NotificationTypesEnum } from "@/app/enums/NotificationTypesEnum"
+import { useFavouriteContext } from "@/context/FavouriteContext"
+import { useNotification } from "@/context/NotificationContext"
+import { NotificationTypesEnum } from "@/enums/NotificationTypesEnum"
 import { useState } from "react"
 import { Tooltip } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { Cat } from "@/app/types/Cat";
+import { Cat } from "@/types/Cat";
 
 interface ActionsBarProps {
   cat: Cat

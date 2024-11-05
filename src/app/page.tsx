@@ -1,7 +1,7 @@
 'use client';
-import Filter from "./components/filter/Filter";
-import MainGrid from "./components/grid/MainGrid";
-import Profile from "./components/profile/Profile";
+import Filter from "../components/filter/Filter";
+import MainGrid from "../components/grid/MainGrid";
+import Profile from "../components/profile/Profile";
 
 export default function Home() {
   return (

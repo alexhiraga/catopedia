@@ -1,9 +1,9 @@
 'use client';
-import { useFavouriteContext } from "@/app/context/FavouriteContext";
+import { useFavouriteContext } from "@/context/FavouriteContext";
 import Grid from "./Grid";
 import { useEffect, useState } from "react";
-import { Cat } from "@/app/types/Cat";
-import { useUserModal } from "@/app/context/modal/UserModalContext";
+import { Cat } from "@/types/Cat";
+import { useUserModal } from "@/context/modal/UserModalContext";
 
 interface FavouritesGridProps {
   showMyFavourites: boolean

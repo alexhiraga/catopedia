@@ -1,4 +1,4 @@
-import { ButtonFilterProps } from "@/app/types/ButtonFilterProps";
+import { ButtonFilterProps } from "@/types/ButtonFilterProps";
 
 export default function ToggleButtonFilter({ isActive, onClick, children }: ButtonFilterProps) {
   return (

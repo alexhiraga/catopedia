@@ -1,4 +1,4 @@
-import { Breed } from "@/app/types/Breed"
+import { Breed } from "@/types/Breed"
 import Progress from "./Progress"
 
 interface CatStatsProps {

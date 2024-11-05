@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react";
-import ToggleButtonFilter from "../components/filter/button/ToggleButtonFilter";
-import FavouritesGrid from "../components/grid/FavouritesGrid";
-import Profile from "../components/profile/Profile";
+import ToggleButtonFilter from "../../components/filter/button/ToggleButtonFilter";
+import FavouritesGrid from "../../components/grid/FavouritesGrid";
+import Profile from "../../components/profile/Profile";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export default function FavouritesPage() {

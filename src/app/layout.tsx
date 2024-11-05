@@ -3,7 +3,7 @@ import "./globals.css";
 import { Montserrat } from 'next/font/google'
 import { Providers } from "./providers";
 import Navbar from "./navbar";
-import AppProviders from "./context/AppProviders";
+import AppProviders from "../context/AppProviders";
 
 const montserrat = Montserrat({
   weight: ['400', '600', '800'],

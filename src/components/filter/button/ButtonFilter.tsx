@@ -1,4 +1,4 @@
-import { ButtonFilterProps } from "@/app/types/ButtonFilterProps"
+import { ButtonFilterProps } from "@/types/ButtonFilterProps"
 import React from "react"
 
 export default function ButtonFilter({ isActive, onClick, children }: ButtonFilterProps) {

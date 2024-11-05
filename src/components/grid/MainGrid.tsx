@@ -1,4 +1,4 @@
-import { useImagesContext } from "@/app/context/ImagesContext";
+import { useImagesContext } from "@/context/ImagesContext";
 import Grid from "./Grid";
 import InfiniteScroll from "react-infinite-scroll-component";
 

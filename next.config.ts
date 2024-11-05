@@ -6,7 +6,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: '*.thecatapi.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.tumblr.com',
       },
     ],
   }

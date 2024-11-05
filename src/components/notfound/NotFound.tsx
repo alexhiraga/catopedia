@@ -1,5 +1,5 @@
 import Image from "next/image"
-import sadcat from '../../../../public/sadcat.png'
+import sadcat from '/public/assets/sadcat.png'
 
 export default function NotFound() {
   return (

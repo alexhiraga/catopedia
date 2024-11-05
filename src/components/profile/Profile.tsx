@@ -1,14 +1,15 @@
 "use client"
 
 import Image from "next/image";
-import favicon from '../../favicon.ico'
+import favicon from '../../app/favicon.ico'
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedIn from "@mui/icons-material/LinkedIn";
 import Instagram from "@mui/icons-material/Instagram";
 import { Tooltip } from "@mui/material";
 import Article from "@mui/icons-material/Article";
-import { useUserModal } from "@/app/context/modal/UserModalContext";
+import { useUserModal } from "@/context/modal/UserModalContext";
 import EditIcon from '@mui/icons-material/Edit';
+import Link from "next/link";
 
 export default function Profile() {
   const { openModal, user } = useUserModal()
@@ -43,24 +44,24 @@ export default function Profile() {
         </div>
         <div className="flex flex-row gap-4">
           <Tooltip title="GitHub">
-            <a href="https://github.com/alexhiraga" target="_blank">
+            <Link href="https://github.com/alexhiraga" target="_blank">
               <GitHubIcon fontSize="large" />
-            </a>
+            </Link>
           </Tooltip>
           <Tooltip title="LinkedIn">
-            <a href="https://www.linkedin.com/in/alexhiraga/" target="_blank">
+            <Link href="https://www.linkedin.com/in/alexhiraga/" target="_blank">
               <LinkedIn fontSize="large" />
-            </a>
+            </Link>
           </Tooltip>
           <Tooltip title="Instagram">
-            <a href="https://www.instagram.com/alexhiraga/" target="_blank">
+            <Link href="https://www.instagram.com/alexhiraga/" target="_blank">
               <Instagram fontSize="large" />
-            </a>
+            </Link>
           </Tooltip>
           <Tooltip title="Portfolio">
-            <a href="https://www.alexhiraga.com" target="_blank">
+            <Link href="https://www.alexhiraga.com" target="_blank">
               <Article fontSize="large" />
-            </a>
+            </Link>
           </Tooltip>
         </div>
       </div>
