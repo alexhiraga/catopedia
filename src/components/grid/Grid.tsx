@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Tooltip } from "@mui/material";
 import { useFavouriteContext } from "@/context/FavouriteContext";
-import { Cat } from "@/app/types/Cat";
+import { Cat } from "@/types/Cat";
 
 interface GridProps {
   images: Cat[]
