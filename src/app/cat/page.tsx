@@ -8,9 +8,17 @@ import { Suspense } from "react";
 export default function CatPage() {
   const searchParams = useSearchParams()
   const id = searchParams.get('id')
+  if (!id) {
+    return (
+      <Suspense fallback={<p>Loading...</p>}>
+        <NotFound />
+      </Suspense>
+    );
+  }
+
   return (
     <Suspense fallback={<p>Loading...</p>}>
-      {!id ? <NotFound /> : <CatDetails id={id} />}
+      <CatDetails id={id} />
     </Suspense>
   )
 }
